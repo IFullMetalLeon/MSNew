@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MSNew.View.Doc.BoxPage"
+             x:Name="BoxPageView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="label1"
+                   VerticalOptions="StartAndExpand"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Center" >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Path=BindingContext.NmName, Source={x:Reference BoxPageView}}"/>
+                        <Span Text="   "/>
+                        <Span Text="{Binding Path=BindingContext.BoxNumber, Source={x:Reference BoxPageView}}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <ListView x:Name="boxSpecList"
+                      ItemsSource="{Binding BoxSpec}"
+                      SeparatorVisibility="Default"
+                      HasUnevenRows="True"
+                      SelectedItem="{Binding SelectedBox,Mode=TwoWay}">
+                <ListView.Header>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Номер коробки" BackgroundColor="#c5cae9" FontSize="18" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start"/>
+                        <Label Text="Количество"  BackgroundColor="#c5cae9" FontSize="18" TextColor="Green" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Label Text="{Binding BoxNum}"  FontSize="18" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start"/>
+                                    <Label Text="{Binding Quant}"  TextColor="DarkGreen" FontSize="18" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+                                    <Button Text="D" IsVisible="{Binding IsSelected}" Command="{Binding Path=BindingContext.DeleteBox, Source={x:Reference BoxPageView}}"/>
+                                    <Button Text="M" IsVisible="{Binding IsSelected}" Command="{Binding Path=BindingContext.ShowMark, Source={x:Reference BoxPageView}}"/>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

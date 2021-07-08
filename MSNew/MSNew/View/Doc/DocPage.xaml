@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MSNew.View.Doc.DocPage"
+             Title="Документы"
+             x:Name="DocPageView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label TextColor="{Binding DocHeadLabelTextColor}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="№ "/>
+                        <Span Text="{Binding Path=BindingContext.DocHeadNumb, Source={x:Reference DocPageView}}"/>
+                        <Span Text="Товаровед: "/>
+                        <Span Text="{Binding Path=BindingContext.DocHeadGoodsExpert, Source={x:Reference DocPageView}}"/>
+                        <Span Text="Грузчик: "/>
+                        <Span Text="{Binding Path=BindingContext.DocHeadLoader, Source={x:Reference DocPageView}}"/>
+                        <Span Text="{Binding Path=BindingContext.MarkDetail, Source={x:Reference DocPageView}}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <ListView x:Name="docSpecList"
+                          ItemsSource="{Binding DocSpecs}"
+                          SeparatorVisibility="Default"                         
+                          HasUnevenRows="True"
+                          SelectedItem="{Binding SelectDocSpec,Mode=TwoWay}"
+                          CachingStrategy="RecycleElement" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="15*" />
+                                            <ColumnDefinition Width="3*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding Name}" Grid.Column="0" FontSize="14" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Column="1" FontSize="11"  HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding QuantDo}" TextColor="{Binding QuantDoTC}"/>
+                                                    <Span Text=" / "/>
+                                                    <Span Text="{Binding QuantNeed}" TextColor="Green"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Grid>
+                                    <Button Text="..." IsVisible="{Binding IsSelected}" Command="{Binding Path=BindingContext.BoxShow, Source={x:Reference DocPageView}}"/>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

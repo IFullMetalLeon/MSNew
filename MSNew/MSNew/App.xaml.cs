@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MSNew.View;
 
 namespace MSNew
 {
@@ -9,8 +10,7 @@ namespace MSNew
         public App()
         {
             InitializeComponent();
-
-            //MainPage = new MainPage();
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()

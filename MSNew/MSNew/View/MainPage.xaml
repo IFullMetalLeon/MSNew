@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MSNew.View.MainPage"
+             xmlns:pages="clr-namespace:MSNew.ViewModel">
+  <MasterDetailPage.Master>
+        <ContentPage Title="Меню">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Frame Margin="3" Grid.Row="0" BackgroundColor="White">
+                    <StackLayout>
+                        <Image Source="logo.png" Aspect="AspectFill"/>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Версия 1.1"/>
+                                    <Span Text="&#xA;"/>
+                                    <Span Text="Номер a_12"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <BoxView Grid.Row="2" BackgroundColor="#D6DFE5" HeightRequest="1"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Margin="3" Grid.Row="1" BackgroundColor="White">
+                    <StackLayout>
+                        <Button x:Name="Doc" Text="Документы" Clicked="Doc_Clicked"/>
+                        <Button x:Name="Check" Text="Проверка штрихкода" Clicked="Check_Clicked"/>
+                        <Button x:Name="Link" Text="Привязка" Clicked="Link_Clicked"/>
+                        <Button x:Name="ParusRevizor" Text="Ревизия дл Паруса" Clicked="ParusRevizor_Clicked"/>
+                        <Button x:Name="DominoRevizor" Text="Ревизия дл Домино" Clicked="DominoRevizor_Clicked"/>
+                        <Button x:Name="Setting" Text="Настройки" Clicked="Setting_Clicked"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </ContentPage>
+
+    </MasterDetailPage.Master>
+  <MasterDetailPage.Detail>
+        <NavigationPage>
+        </NavigationPage>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>
