@@ -40,7 +40,7 @@ namespace MSNew.ViewModel.Doc
             term_name = CrossSettings.Current.GetValueOrDefault("TerminalNumber", "");
             doc_rn = _doc_rn;
             nm_rn = _nm_rn;
-            nm_name = _nm_name;
+            NmName = _nm_name;
             del_sign = _del_sign;
         }
 

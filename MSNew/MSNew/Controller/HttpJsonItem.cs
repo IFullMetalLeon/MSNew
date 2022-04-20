@@ -17,11 +17,24 @@ namespace MSNew.Controller
             public string box_rn { get; set; }
         }
 
+        public class GetDocQueueResponce
+        {
+            public string Q_RN { get; set; }
+            public string Q_STATUS { get; set; }
+            public string DOC_RN { get; set; }
+            public string Q_NUMB { get; set; }
+            public string AGNABBR { get; set; }
+            public string DOC_QUANT { get; set; }
+            public string DOC_MEST { get; set; }
+        }
         public class GetDocHeadResponce
         {
             public string TC_RN { get; set; }
+            public string TC_NUMB { get; set; }
             public string SLOADER { get; set; }
             public string SGOODMAN { get; set; }
+            public string COMMENTS { get; set; }
+            public string ADDRESS { get; set; }
         }
 
         public class GetDocSpecResponce
@@ -31,6 +44,7 @@ namespace MSNew.Controller
             public string NM_RN { get; set; }
             public string QUANT_NEED { get; set; }
             public string QUANT_DO { get; set; }
+            public string CAPACITY { get; set; }
         }
 
         public class GetBoxSpecResponce

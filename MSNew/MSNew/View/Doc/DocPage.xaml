@@ -5,57 +5,98 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MSNew.View.Doc.DocPage"
-             Title="Документы"
+             Title="Документ"
              x:Name="DocPageView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label TextColor="{Binding DocHeadLabelTextColor}">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="№ "/>
-                        <Span Text="{Binding Path=BindingContext.DocHeadNumb, Source={x:Reference DocPageView}}"/>
-                        <Span Text="Товаровед: "/>
-                        <Span Text="{Binding Path=BindingContext.DocHeadGoodsExpert, Source={x:Reference DocPageView}}"/>
-                        <Span Text="Грузчик: "/>
-                        <Span Text="{Binding Path=BindingContext.DocHeadLoader, Source={x:Reference DocPageView}}"/>
-                        <Span Text="{Binding Path=BindingContext.MarkDetail, Source={x:Reference DocPageView}}"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <ListView x:Name="docSpecList"
-                          ItemsSource="{Binding DocSpecs}"
-                          SeparatorVisibility="Default"                         
-                          HasUnevenRows="True"
-                          SelectedItem="{Binding SelectDocSpec,Mode=TwoWay}"
-                          CachingStrategy="RecycleElement" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.View>
-                                <StackLayout Orientation="Horizontal">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="15*" />
-                                            <ColumnDefinition Width="3*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Label Text="{Binding Name}" Grid.Column="0" FontSize="14" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
-                                        <Label Grid.Column="1" FontSize="11"  HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="{Binding QuantDo}" TextColor="{Binding QuantDoTC}"/>
-                                                    <Span Text=" / "/>
-                                                    <Span Text="{Binding QuantNeed}" TextColor="Green"/>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-                                    </Grid>
-                                    <Button Text="..." IsVisible="{Binding IsSelected}" Command="{Binding Path=BindingContext.BoxShow, Source={x:Reference DocPageView}}"/>
-                                </StackLayout>
-                            </ViewCell.View>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+        <StackLayout BackgroundColor="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="Center" Text="{Binding Path=BindingContext.DocHeadNumb, Source={x:Reference DocPageView}}"/>
+                <Label Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding TotalQuantDo}" TextColor="{Binding TotalQuantDoTC}"/>
+                            <Span Text=" / "/>
+                            <Span Text="{Binding TotalQuantNeed}" TextColor="Green"/>
+                            <Span Text="  "/>
+                            <Span FontFamily="Segoe MDL2 Assets.ttf#Segoe MDL2 Assets" FontSize="16" Text="&#xE725;" TextColor="{Binding TotalQuantDoTC}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Path=BindingContext.DocSend, Source={x:Reference DocPageView}}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Center" Text="{Binding Path=BindingContext.DocHeadGoodsExpert, Source={x:Reference DocPageView}}"/>
+                <Label Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" Text="{Binding Path=BindingContext.DocHeadLoader, Source={x:Reference DocPageView}}"/>
+                <Label Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="Center" Text="{Binding Path=BindingContext.Address, Source={x:Reference DocPageView}}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Path=BindingContext.DocSpecAddressShow, Source={x:Reference DocPageView}}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Center" Text="{Binding Path=BindingContext.Comment, Source={x:Reference DocPageView}}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Path=BindingContext.DocSpecCommentShow, Source={x:Reference DocPageView}}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Frame Grid.Row="3" Grid.ColumnSpan="2" BorderColor="Black" CornerRadius="15" Padding="7">
+                    <ListView x:Name="docSpecList"
+                                  ItemsSource="{Binding DocSpecs}"
+                                  SeparatorVisibility="Default"                         
+                                  HasUnevenRows="True"
+                                  BackgroundColor="White"                      
+                                  SelectedItem="{Binding SelectDocSpec,Mode=TwoWay}"
+                                  Margin="0,3,0,0"
+                                  CachingStrategy="RecycleElement" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="14*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                    <ColumnDefinition Width="3*" />
+                                                </Grid.ColumnDefinitions>
+                                                <BoxView Grid.Column="0" Color="white"/>
+                                                <Label Text="{Binding Name}" Grid.Column="0" FontSize="14" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+                                                
+                                                <BoxView Grid.Column="1" Color="White"/>
+                                                <Label Text="{Binding Capacity}" TextColor="Blue" Grid.Column="1" FontSize="11" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+                                                <BoxView Grid.Column="2" Color="White"/>
+                                                <Label Grid.Column="2" FontSize="11"  HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding QuantDo}" TextColor="{Binding QuantDoTC}"/>
+                                                            <Span Text=" / "/>
+                                                            <Span Text="{Binding QuantNeed}" TextColor="Green"/>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+
+                                            </Grid>
+                                            <Frame IsVisible="{Binding IsSelected}"  Padding="2" WidthRequest="50" HorizontalOptions="End">
+                                                <Button FontFamily="Segoe MDL2 Assets.ttf#Segoe MDL2 Assets" BackgroundColor="White" TextColor="Green" Text="&#xE71E;" FontSize="20" VerticalOptions="CenterAndExpand" 
+                                                HorizontalOptions="CenterAndExpand" HeightRequest="50" WidthRequest="70" Command="{Binding Path=BindingContext.BoxShow, Source={x:Reference DocPageView}}"/>
+                                            </Frame>
+                                        </StackLayout>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Frame>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

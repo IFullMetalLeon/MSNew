@@ -18,8 +18,8 @@ namespace MSNew.ViewModel
         {
             TerminalNumber = CrossSettings.Current.GetValueOrDefault("TerminalNumber", "");
             IsRevizor = CrossSettings.Current.GetValueOrDefault("IsRevizor", "False");
-            BarcodeEvent = CrossSettings.Current.GetValueOrDefault("BarcodeEvent", "");
-            BarcodeString = CrossSettings.Current.GetValueOrDefault("BarcodeString", "");
+            BarcodeEvent = CrossSettings.Current.GetValueOrDefault("BarcodeEvent", "android.intent.ACTION_DECODE_DATA");
+            BarcodeString = CrossSettings.Current.GetValueOrDefault("BarcodeString", "barcode_string");
         }
 
         public void endPage()

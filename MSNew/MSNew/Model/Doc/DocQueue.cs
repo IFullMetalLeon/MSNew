@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel;
+using System.Text;
 
 namespace MSNew.Model.Doc
 {
-    public class DocSpec : INotifyPropertyChanged
+    public class DocQueue : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propName)
@@ -19,7 +19,7 @@ namespace MSNew.Model.Doc
         {
             get
             {
-                return _rn;
+                return _rn;                    
             }
             set
             {
@@ -31,84 +31,104 @@ namespace MSNew.Model.Doc
             }
         }
 
-        private string _name { get; set; }
-        public string Name
+        private string _status { get; set; }
+        public string Status
         {
             get
             {
-                return _name;
+                return _status;
             }
             set
             {
-                if (_name != value)
+                if (_status != value)
                 {
-                    _name = value;
-                    OnPropertyChanged("Name");
+                    _status = value;
+                    OnPropertyChanged("Status");
                 }
             }
         }
 
-        private string _quantNeed { get; set; }
-        public string QuantNeed
+        private string _docRn { get; set; }
+        public string DocRn
         {
             get
             {
-                return _quantNeed;
+                return _docRn;
             }
             set
             {
-                if (_quantNeed != value)
+                if (_docRn != value)
                 {
-                    _quantNeed = value;
-                    OnPropertyChanged("QuantNeed");
+                    _docRn = value;
+                    OnPropertyChanged("DocRn");
                 }
             }
         }
 
-        private string _quantDo { get; set; }
-        public string QuantDo
+        private string _docNumb { get; set; }
+        public string DocNumb
         {
             get
             {
-                return _quantDo;
+                return _docNumb;
             }
             set
             {
-                if (_quantDo != value)
+                if (_docNumb != value)
                 {
-                    _quantDo = value;
-                    OnPropertyChanged("QuantDo");
-                    OnPropertyChanged("QuantDoTC");
+                    _docNumb = value;
+                    OnPropertyChanged("DocNumb");
                 }
             }
         }
 
-        private string _capacity { get; set; }
-        public string Capacity
+        private string _agent { get; set; }
+        public string Agent
         {
             get
             {
-                return _capacity;
+                return _agent;
             }
             set
             {
-                if (_capacity != value)
+                if (_agent != value)
                 {
-                    _capacity = value;
-                    OnPropertyChanged("Capacity");
+                    _agent = value;
+                    OnPropertyChanged("Agent");
                 }
             }
         }
-
-        public string QuantDoTC
+        private string _quant { get; set; }
+        public string Quant
         {
             get
             {
-                if (QuantNeed != QuantDo)
-                    return "Red";
-                else
-                    return "Green";
-            }           
+                return _quant;
+            }
+            set
+            {
+                if (_quant != value)
+                {
+                    _quant = value;
+                    OnPropertyChanged("Quant");
+                }
+            }
+        }
+        private string _mesta { get; set; }
+        public string Mesta
+        {
+            get
+            {
+                return _mesta;
+            }
+            set
+            {
+                if (_mesta != value)
+                {
+                    _mesta = value;
+                    OnPropertyChanged("Mesta");
+                }
+            }
         }
 
         private bool _isSelected { get; set; }

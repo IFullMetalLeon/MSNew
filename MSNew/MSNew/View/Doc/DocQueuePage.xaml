@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MSNew.View.Doc.DocQueuePage"
+             x:Name="DocQueuePageView"
+             Title="Документы на сборку">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <ListView x:Name="docQueueSpecList"
+                          ItemsSource="{Binding DocQueue}"
+                          SeparatorVisibility="None"                         
+                          HasUnevenRows="True"
+                          CachingStrategy="RecycleElement"
+                          SelectedItem="{Binding SelectDocQueue,Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Frame CornerRadius="10" BackgroundColor="White" BorderColor="Black" Padding="5" Margin="5">
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="3*" />
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="1*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding DocNumb}"/>
+                                                        <Span Text="&#xA;"/>
+                                                        <Span Text="{Binding Agent}"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Mesta}"/>
+                                                        <Span Text="&#xA;"/>
+                                                        <Span Text="Кор."/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label  Grid.Column="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Quant}"/>
+                                                        <Span Text="&#xA;"/>
+                                                        <Span Text="Бут."/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </Grid>
+                                        <Frame IsVisible="{Binding IsSelected}"  Padding="2" WidthRequest="100" HorizontalOptions="End">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/> 
+                                                </Grid.ColumnDefinitions>
+                                                <Button Grid.Column="0" FontFamily="Segoe MDL2 Assets.ttf#Segoe MDL2 Assets" BackgroundColor="White" TextColor="Green" Text="&#xE71E;" FontSize="20" VerticalOptions="CenterAndExpand" 
+                                                HorizontalOptions="CenterAndExpand" HeightRequest="50" WidthRequest="70" Command="{Binding Path=BindingContext.DocQueueMove, Source={x:Reference DocQueuePageView}}"/>
+                                                <Button Grid.Column="1" FontFamily="Segoe MDL2 Assets.ttf#Segoe MDL2 Assets" BackgroundColor="White" TextColor="Red" Text="&#xE711;" FontSize="20" VerticalOptions="CenterAndExpand" 
+                                                HorizontalOptions="CenterAndExpand" HeightRequest="50" WidthRequest="70"  Command="{Binding Path=BindingContext.DocQueueDelete, Source={x:Reference DocQueuePageView}}"/>
+                                            </Grid>
+                                        </Frame>
+
+
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

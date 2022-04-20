@@ -5,37 +5,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MSNew.View.Doc.MarkPage"
+             Title="Марки"
              x:Name="MarkPageView">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="White">
             <Label x:Name="label1"
                    VerticalOptions="StartAndExpand"
                    HorizontalOptions="FillAndExpand"
                    HorizontalTextAlignment="Center"
                    Text="{Binding BoxNum}"/>
-            <ListView x:Name="boxSpecList"
+            <Frame BorderColor="Black" CornerRadius="15" Padding="7">
+                <ListView x:Name="boxSpecList"
                       ItemsSource="{Binding MarkSpec}"
                       SeparatorVisibility="Default"
                       HasUnevenRows="True">
-                <ListView.Header>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Префикс" BackgroundColor="#c5cae9" FontSize="18" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start"/>
-                        <Label Text="Номер"  BackgroundColor="#c5cae9" FontSize="18" TextColor="Green" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
-                    </StackLayout>
-                </ListView.Header>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.View>
-                                <StackLayout Orientation="Horizontal" >
-                                    <Label Text="{Binding Pref}" FontSize="18" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start"/>
-                                    <Label Text="{Binding Numb}"  FontSize="18" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
-                                </StackLayout>
-                            </ViewCell.View>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Orientation="Horizontal" >
+                                        <Label Text="{Binding Pref}" FontSize="18" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding Numb}"  FontSize="18" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

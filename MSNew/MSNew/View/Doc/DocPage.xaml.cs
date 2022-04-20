@@ -14,10 +14,10 @@ namespace MSNew.View.Doc
     public partial class DocPage : ContentPage
     {
         public DocPageVM dpvm { get; set; }
-        public DocPage()
+        public DocPage(string _doc_rn)
         {
             InitializeComponent();
-            dpvm = new DocPageVM() {Navigation = this.Navigation };
+            dpvm = new DocPageVM(_doc_rn) {Navigation = this.Navigation };
             this.BindingContext = dpvm;
         }
 
@@ -39,14 +39,14 @@ namespace MSNew.View.Doc
 
         public void myScroll(DocSpec item)
         {
-            foreach (DocSpec q in this.docSpecList.ItemsSource)
+            /*foreach (DocSpec q in this.docSpecList.ItemsSource)
             {
                 if (q.Rn == item.Rn)
                 {
                     this.docSpecList.SelectedItem = q;
                     this.docSpecList.ScrollTo(q, ScrollToPosition.MakeVisible, false);
                 }
-            }
+            }*/
         }
 
     }

@@ -14,12 +14,13 @@ using Xamarin.Forms.Xaml;
 namespace MSNew.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : MasterDetailPage
+    public partial class MainPage : FlyoutPage
     {
         public MainPage()
         {
             InitializeComponent();
-            Detail = new NavigationPage(new DocPage());
+            //Detail = new NavigationPage(new DocPage());
+            Detail = new NavigationPage(new DocQueuePage()) { BarBackgroundColor = Color.FromHex("#FFFFFF"), BarTextColor = Color.FromHex("#000000") };
         }
 
         private void Setting_Clicked(object sender, EventArgs e)
@@ -31,7 +32,8 @@ namespace MSNew.View
         private void Doc_Clicked(object sender, EventArgs e)
         {
             IsPresented = false;
-            Detail = new NavigationPage(new DocPage());
+            //Detail = new NavigationPage(new DocPage());
+            Detail = new NavigationPage(new DocQueuePage());
         }
 
         private void Check_Clicked(object sender, EventArgs e)

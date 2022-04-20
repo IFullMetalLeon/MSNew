@@ -16,7 +16,7 @@
                     <FormattedString>
                         <Span Text="{Binding Path=BindingContext.LinkHead, Source={x:Reference LinkPageView}}"/>
                         <Span Text=" КОЛ-ВО "/>
-                        <Span Text="{Binding Path=BindingContext.CurrentMarkCount, Source={x:Reference LinkPageView}}}"/>
+                        <Span Text="{Binding Path=BindingContext.CurrentMarkCount, Source={x:Reference LinkPageView}}"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -32,8 +32,8 @@
                                 <StackLayout>
                                     <Label Text="{Binding ShortBarcode}"  FontSize="18" HorizontalOptions="Fill" HorizontalTextAlignment="Start"/>
                                     <Label Text="{Binding IsLinked}" FontSize="18" TextColor="Red"  HorizontalOptions="Fill" HorizontalTextAlignment="Start"/>
-                                    <Button Text="D" IsVisible="{Binding IsSelected}" Command="{Binding Path=BindingContext.LinkDelete, Source={x:Reference LinkPageView}}}"/>
-                                    <Button Text="L" IsVisible="{Binding IsSelected}" Command="{Binding Path=BindingContext.LinkSend, Source={x:Reference LinkPageView}}}"/>
+                                    <Button Text="D" IsVisible="{Binding IsSelected}" Command="{Binding Path=BindingContext.LinkDelete, Source={x:Reference LinkPageView}}"/>
+                                    <Button Text="L" IsVisible="{Binding IsSelected}" Command="{Binding Path=BindingContext.LinkSend, Source={x:Reference LinkPageView}}"/>
                                 </StackLayout>
 
                             </ViewCell.View>

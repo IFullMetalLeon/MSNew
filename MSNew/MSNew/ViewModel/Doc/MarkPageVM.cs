@@ -22,6 +22,7 @@ namespace MSNew.ViewModel.Doc
 
             box_rn = _box_rn;
             del_sign = _del_sign;
+            BoxNum = _box_name;
         }
 
         public void startPage()

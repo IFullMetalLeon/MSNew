@@ -44,6 +44,36 @@ namespace MSNew.Controller
 
         }
 
+        public static async void SendGetDocQueue(string term)
+        {
+            try
+            {
+                HttpClient http = new HttpClient();
+                http.Timeout = TimeSpan.FromMinutes(5);
+
+                string param = "?type=doc_queue&term=" + term;
+
+                http.BaseAddress = new Uri(httpMainUrl + param);
+                http.DefaultRequestHeaders.Accept.Clear();
+
+                var response = await http.GetAsync(http.BaseAddress);
+
+                response.EnsureSuccessStatusCode();
+
+                string content = await response.Content.ReadAsStringAsync();
+
+                MessagingCenter.Send<string, string>("HttpControler", "GetDocQueue", content);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("address associated with hostname"))
+                    MessagingCenter.Send<string, string>("HttpControler", "Error", "Нет подключения к интернету");
+                else
+                    MessagingCenter.Send<string, string>("HttpControler", "Error", ex.Message);
+            }
+
+        }
+
         public static async void SendGetDocSpec(string doc_rn)
         {
             try
